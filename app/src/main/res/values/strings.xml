@@ -1,0 +1,134 @@
+<resources>
+
+<string name="app_name">آلة حاسبة</string>
+<string name="app_description">آلة حاسبة بسيطة وسريعة</string>
+<string name="app_version"></string>
+<string name="app_copyright"></string>
+<string name="app_description_long">آلة حاسبة احترافية وسهلة الاستخدام للحسابات اليومية والعلمية</string>
+
+<string name="action_exit">خروج</string>
+<string name="action_back">رجوع</string>
+<string name="action_settings">الإعدادات</string>
+<string name="action_close">إغلاق</string>
+<string name="action_show_functions">عرض جميع الوظائف</string>
+<string name="action_show_calc_step">عرض خطوات الحساب</string>
+<string name="action_retry">إعادة المحاولة</string>
+
+<string name="action_choose_mode">اختيار الوضع</string>
+<string name="action_ok">موافق</string>
+<string name="action_cancel">إلغاء</string>
+
+<string name="text_zero">0</string>
+
+<string name="text_dec">عشري</string>
+<string name="text_oct">ثماني</string>
+<string name="text_bin">ثنائي</string>
+<string name="text_hex">سداسي عشري</string>
+
+<string name="text_please_open_record_step">يرجى تفعيل تسجيل خطوات الحساب من الإعدادات أولاً</string>
+
+<string name="text_history_cleared">تم مسح السجل</string>
+<string name="text_error">خطأ</string>
+<string name="text_auto_bc_error">القيمة خارج نطاق الحساب</string>
+<string name="text_out_of_range">خارج النطاق</string>
+<string name="text_use_deg">الوضع الحالي: درجات</string>
+<string name="text_use_rad">الوضع الحالي: راديان</string>
+<string name="text_please_choose">يرجى الاختيار</string>
+
+<string name="text_none">لا توجد بيانات</string>
+<string name="text_none_calc_step">لا توجد خطوات حساب بعد</string>
+<string name="text_i_new">حسناً</string>
+
+<string name="text_mode_normal">عادي</string>
+<string name="text_mode_expand">علمي</string>
+<string name="text_mode_programmer">مبرمج</string>
+<string name="text_mode_date_calc">حساب فرق التاريخ</string>
+<string name="text_mode_conversion">تحويل الوحدات</string>
+
+<string name="text_same_day">نفس اليوم</string>
+<string name="text_same_time">نفس الوقت</string>
+<string name="text_all">الإجمالي</string>
+<string name="text_add">إضافة</string>
+<string name="text_sub">طرح</string>
+
+<string name="text_week">أسبوع</string>
+<string name="text_hour">ساعة</string>
+<string name="text_minute">دقيقة</string>
+<string name="text_second">ثانية</string>
+<string name="text_day">يوم</string>
+<string name="text_month">شهر</string>
+<string name="text_year">سنة</string>
+
+<string name="text_date">تاريخ</string>
+<string name="text_time">وقت</string>
+<string name="text_start_date">تاريخ البداية</string>
+<string name="text_end_date">تاريخ النهاية</string>
+<string name="text_result_date">تاريخ النتيجة</string>
+
+<string name="text_days_between">عدد الأيام بين التاريخين</string>
+<string name="text_time_between">الفرق الزمني</string>
+
+<string name="text_please_choose_date">اختر التاريخ</string>
+<string name="text_date_diff">حساب الفرق بين تاريخين</string>
+<string name="text_addsub_date">إضافة أو طرح أيام</string>
+
+<string name="text_choose_unit">اختيار الوحدة</string>
+<string name="text_dot">.</string>
+<string name="text_title">العنوان</string>
+<string name="text_more">المزيد</string>
+<string name="text_clear">مسح</string>
+<string name="text_show_full">عرض كامل</string>
+
+<string name="text_calculator">آلة حاسبة</string>
+<string name="text_converter">محول</string>
+<string name="text_calculator_mode">آلة حاسبة</string>
+
+<string name="text_text_too_long">النص طويل جداً</string>
+<string name="text_click_to_input_function">اضغط لإدخال الوظيفة</string>
+
+<string name="text_custom_input">
+يمكنك إدخال معادلة مثل:
+1 + 2 × 3
+</string>
+
+<string name="title_activity_settings">الإعدادات</string>
+
+<string name="title_activity_date_range">حساب التاريخ</string>
+<string name="title_to_converter">محول</string>
+<string name="title_full_text">عرض النص الكامل</string>
+<string name="title_reminder">تنبيه</string>
+
+<string name="title_show_functions">جميع الوظائف</string>
+<string name="title_custom_input">إدخال يدوي</string>
+
+<string name="title_choose_mode">اختيار الوضع</string>
+<string name="title_calc_exception">حدث خطأ أثناء الحساب</string>
+<string name="title_calc_step">خطوات الحساب</string>
+
+<string name="settings_general_header">عام</string>
+<string name="settings_others_header">أخرى</string>
+
+<string name="settings_key_history_count">عدد عناصر السجل</string>
+<string name="settings_key_vibrator">اهتزاز الأزرار</string>
+<string name="settings_key_free_input">تفعيل الإدخال الحر</string>
+
+<string name="settings_key_computation_accuracy">دقة الحساب</string>
+<string name="settings_key_auto_scientific_notation">استخدام الصيغة العلمية تلقائياً</string>
+
+<string name="settings_key_record_step">تسجيل خطوات الحساب</string>
+
+<string name="settings_key_auto_update">فحص التحديث تلقائياً</string>
+
+<string name="text_check_update">جاري التحقق من التحديث</string>
+<string name="text_check_update_failed">فشل التحقق من التحديث</string>
+
+<string name="text_new_update">يتوفر تحديث جديد</string>
+
+<string name="text_latest">أنت تستخدم أحدث إصدار</string>
+
+<string name="text_update_to_latest">تحديث</string>
+<string name="text_do_not_update">لاحقاً</string>
+
+<string name="text_no_network">لا يوجد اتصال بالإنترنت</string>
+
+</resources>
