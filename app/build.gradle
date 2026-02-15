@@ -52,8 +52,8 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    // الإصدار الصحيح
-    implementation 'com.contrarywind:Android-PickerView:4.1.8'
+    // الإصلاح النهائي
+    implementation 'com.github.contrarywind:Android-PickerView:4.1.9'
 
     implementation "com.squareup.okhttp3:okhttp:3.10.0"
     implementation "com.alibaba:fastjson:1.2.10"
