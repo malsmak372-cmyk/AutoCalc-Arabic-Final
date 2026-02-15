@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup JDK 8
+    # الخطوة 1: استخدام Java 17 لتثبيت Android SDK لأن cmdline-tools تتطلب Java 11+
+    - name: Setup Java 17 for SDK Installation
       uses: actions/setup-java@v4
       with:
         distribution: temurin
-        java-version: 8
+        java-version: 17
 
     - name: Install Android SDK
       run: |
@@ -33,14 +33,21 @@ jobs:
         unzip sdk.zip
         mv cmdline-tools latest
         
-        # تصدير المسارات للخطوات التالية عبر ملفات بيئة GitHub Actions
+        # إعداد متغيرات البيئة
         echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
         echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
         echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
         
-        # استخدام المسار الكامل لـ sdkmanager في هذه الخطوة لضمان العمل
+        # قبول التراخيص وتثبيت المكونات باستخدام Java 17
         yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses --sdk_root=$HOME/android-sdk
         $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/android-sdk "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+    # الخطوة 2: التبديل إلى Java 8 لبناء المشروع (الكود القديم يحتاج Java 8)
+    - name: Setup Java 8 for Build
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: 8
 
     - name: Create local.properties
       run: echo "sdk.dir=$HOME/android-sdk" > local.properties
