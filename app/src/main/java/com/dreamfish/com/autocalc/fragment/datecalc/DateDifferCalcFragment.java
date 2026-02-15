@@ -150,11 +150,11 @@ public class DateDifferCalcFragment extends Fragment {
 
     int years = year2 - year1;
     if(year1 <= year2) {
-      //计算相差年数
-      for (int i = year1; i <= year2; i++) { //闰年
+      
+      for (int i = year1; i <= year2; i++) { 
         if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0) {
           daysAll += 366;
-        } else { // 不是闰年
+        } else { 
           daysAll += 365;
         }
         months += 12;
@@ -162,7 +162,7 @@ public class DateDifferCalcFragment extends Fragment {
 
       years -= 2;
 
-      //同年
+      
       if(year1 == year2) {
         int month1Days = DateUtils.getDayOfMonth(month1, year1);
         monthsOverlap = month2 - month1 - 1;
@@ -175,7 +175,7 @@ public class DateDifferCalcFragment extends Fragment {
         }
       } else {
 
-        //减去第一年的月天数
+        
         for (int i = 1; i <= month1; i++) {
           if (i == month1) {
             daysAll -= day1;
@@ -184,7 +184,7 @@ public class DateDifferCalcFragment extends Fragment {
             daysAll -= DateUtils.getDayOfMonth(i, year1);
           months--;
         }
-        //加上最后一年的月天数
+        
         for (int i = 1; i <= month2; i++) {
           if (i == month2) {
             daysAll += day2 + 1;
@@ -194,7 +194,7 @@ public class DateDifferCalcFragment extends Fragment {
             months++;
           }
         }
-        //减去最后一年的月数和天数
+        
         for (int i = month2; i <= 12; i++) {
           if (i == month2) daysAll -= DateUtils.getDayOfMonth(i, year2) - day2;
           else daysAll -= DateUtils.getDayOfMonth(i, year2);

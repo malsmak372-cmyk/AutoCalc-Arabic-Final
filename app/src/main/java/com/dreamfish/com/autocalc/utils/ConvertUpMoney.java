@@ -1,16 +1,16 @@
 package com.dreamfish.com.autocalc.utils;
 
 public class ConvertUpMoney {
-  //大写数字
+  
   private static final String[] NUMBERS = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
-  // 整数部分的单位
+  
   private static final String[] IUNIT = {"元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟"};
-  //小数部分的单位
+  
   private static final String[] DUNIT = {"角", "分", "厘"};
 
-  //转成中文的大写金额
+  
   public static String toChinese(String str) {
-    //判断输入的金额字符串是否符合要求
+    
     if (TextUtils.isEmpty(str) || !str.matches("(-)?[\\d]*(.)?[\\d]*")) {
       return str;
     }
@@ -19,19 +19,19 @@ public class ConvertUpMoney {
       return "零元";
     }
 
-    //判断是否存在负号"-"
+    
     boolean flag = false;
     if (str.startsWith("-")) {
       flag = true;
       str = str.replaceAll("-", "");
     }
 
-    str = str.replaceAll(",", "");//去掉","
-    String integerStr;//整数部分数字
-    String decimalStr;//小数部分数字
+    str = str.replaceAll(",", "");
+    String integerStr;
+    String decimalStr;
 
 
-    //初始化：分离整数部分和小数部分
+    
     if (str.indexOf(".") > 0) {
       integerStr = str.substring(0, str.indexOf("."));
       decimalStr = str.substring(str.indexOf(".") + 1);
@@ -43,30 +43,30 @@ public class ConvertUpMoney {
       decimalStr = "";
     }
 
-    //beyond超出计算能力，直接返回
+    
     if (integerStr.length() > IUNIT.length) {
       return "超出计算能力";
     }
 
-    int[] integers = toIntArray(integerStr);//整数部分数字
-    //判断整数部分是否存在输入012的情况
+    int[] integers = toIntArray(integerStr);
+    
     if (integers.length > 1 && integers[0] == 0) {
       if (flag) {
         str = "-" + str;
       }
       return str;
     }
-    boolean isWan = isWan5(integerStr);//设置万单位
-    int[] decimals = toIntArray(decimalStr);//小数部分数字
-    String result = getChineseInteger(integers, isWan) + getChineseDecimal(decimals);//返回最终的大写金额
+    boolean isWan = isWan5(integerStr);
+    int[] decimals = toIntArray(decimalStr);
+    String result = getChineseInteger(integers, isWan) + getChineseDecimal(decimals);
     if (flag) {
-      return "负" + result;//如果是负数，加上"负"
+      return "负" + result;
     } else {
       return result;
     }
   }
 
-  //将字符串转为int数组
+  
   private static int[] toIntArray(String number) {
     int[] array = new int[number.length()];
     for (int i = 0; i < number.length(); i++) {
@@ -75,7 +75,7 @@ public class ConvertUpMoney {
     return array;
   }
 
-  //将整数部分转为大写的金额
+  
   public static String getChineseInteger(int[] integers, boolean isWan) {
     StringBuffer chineseInteger = new StringBuffer("");
     int length = integers.length;
@@ -85,13 +85,13 @@ public class ConvertUpMoney {
     for (int i = 0; i < length; i++) {
       String key = "";
       if (integers[i] == 0) {
-        if ((length - i) == 13)//万（亿）
+        if ((length - i) == 13)
           key = IUNIT[4];
-        else if ((length - i) == 9) {//亿
+        else if ((length - i) == 9) {
           key = IUNIT[8];
-        } else if ((length - i) == 5 && isWan) {//万
+        } else if ((length - i) == 5 && isWan) {
           key = IUNIT[4];
-        } else if ((length - i) == 1) {//元
+        } else if ((length - i) == 1) {
           key = IUNIT[0];
         }
         if ((length - i) > 1 && integers[i + 1] != 0) {
@@ -103,7 +103,7 @@ public class ConvertUpMoney {
     return chineseInteger.toString();
   }
 
-  //将小数部分转为大写的金额
+  
   private static String getChineseDecimal(int[] decimals) {
     StringBuffer chineseDecimal = new StringBuffer("");
     for (int i = 0; i < decimals.length; i++) {
@@ -115,7 +115,7 @@ public class ConvertUpMoney {
     return chineseDecimal.toString();
   }
 
-  //判断当前整数部分是否已经是达到【万】
+  
   private static boolean isWan5(String integerStr) {
     int length = integerStr.length();
     if (length > 4) {

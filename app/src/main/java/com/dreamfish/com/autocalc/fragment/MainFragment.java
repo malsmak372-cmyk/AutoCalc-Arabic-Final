@@ -483,7 +483,7 @@ public class MainFragment extends Fragment {
     vibratorVibrate();
     updateDegRad();
 
-    //提示
+    
     if(isdeg) Toast.makeText(context, resources.getText(R.string.text_use_deg), Toast.LENGTH_SHORT).show();
     else Toast.makeText(context, resources.getText(R.string.text_use_rad), Toast.LENGTH_SHORT).show();
   }
@@ -885,7 +885,7 @@ public class MainFragment extends Fragment {
 
     ListView list_all_functions = v.findViewById(R.id.list_all_functions);
 
-    //初始化所有函数信息
+    
     String[] functions_help_names = resources.getStringArray(R.array.functions_help_names);
     String[] functions_help_texts = resources.getStringArray(R.array.functions_help_texts);
     for (int i = 0, c = functions_help_names.length; i < c; i++)
@@ -934,7 +934,7 @@ public class MainFragment extends Fragment {
       TextView text_empty = v.findViewById(R.id.text_empty);
       ListView list_all_functions = v.findViewById(R.id.list_all_functions);
 
-      //初始化所有函数信息
+      
       List<String> steps = autoCalc.getLastCalcSteps();
       for(String step : steps)
         functionsListItems.add(new FunctionsListItem(step, ""));
@@ -968,7 +968,7 @@ public class MainFragment extends Fragment {
     dialog.show();
   }
 
-  //设置
+  
   //========================================
 
   private List<String> calcHistory = new ArrayList<>();
@@ -1016,7 +1016,7 @@ public class MainFragment extends Fragment {
     updateCalcSettings();
   }
 
-  //存储数据 历史记录
+  
   //========================================
 
   private SQLiteDatabase calcHistorySqLiteDatabaseRead;

@@ -8,25 +8,21 @@ import java.util.*;
 import java.math.*;
 
 //
-//此类仅为计算用户输入的算式
-//程序需要计算-请直接用代码
-//效率一般
-//这是原始人写的代码
-//说真的，是我写的，但现在我已经看不懂了。。。
-//so，祈祷它没啥问题吧，然后不用去理它了
-//毕竟，写一个新的或许会更好更快
-//在 2018/9 写的
-//   2020/1 修复了一次
-//   2020/3 重构了一次
+
+
+
+
+
+
+
+
+
+
 //
 //1+3-6*(5-3)
 //
 
-/**
- * 自动算式计算
- *
- * @author DreamFish
- */
+
 public class AutoCalc {
 
   public static final int BC_MODE_DEC = 0;
@@ -34,18 +30,7 @@ public class AutoCalc {
   public static final int BC_MODE_HEX = 2;
   public static final int BC_MODE_OCT = 3;
 
-  /**
-   * Tools
-   */
-  private AutoCalcTools tools;
-  /**
-   * Math
-   */
-  private AutoCalcMath math;
-
-  /**
-   * 创建实例
-   */
+  
   public AutoCalc() {
     tools = new AutoCalcTools(this);
     math = new AutoCalcMath(this);
@@ -56,22 +41,16 @@ public class AutoCalc {
   }
 
 
-  /**
-   * 计算入口
-   * 直接传入需要计算的算式
-   * 返回就是结果
-   *
-   * @param equation 需要计算的算式
-   */
+  
   public String calc(String equation) {
-    if ("".equals(equation))// 空检测
+    if ("".equals(equation))
       return "يرجى إدخال المعادلة";
-    if (equation.startsWith("="))// 处理掉=
-      equation = equation.substring(1);// 取=后面的
-    if (equation.endsWith("="))// 处理掉=
-      equation = equation.substring(0, equation.length() - 1);// 取=后面的
+    if (equation.startsWith("="))
+      equation = equation.substring(1);
+    if (equation.endsWith("="))
+      equation = equation.substring(0, equation.length() - 1);
     try {
-      // 计算
+      
       forceNoNumberCheck = false;
       lastSuccess = true;
       lastCalcSteps.clear();
@@ -98,7 +77,7 @@ public class AutoCalc {
       lastSuccess = true;
       return "∞";
     } catch (Exception e) {
-      // 异常信息抓取
+      
       lastSuccess = false;
       lastException = e;
       e.printStackTrace();
@@ -106,11 +85,7 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 计算入口
-   * @param equation 算式
-   * @return 结果
-   */
+  
   public BigDecimal calcBigDecimal(String equation) throws Exception {
     forceNoNumberCheck = false;
     lastSuccess = true;
@@ -137,12 +112,7 @@ public class AutoCalc {
     return tools;
   }
 
-  /**
-   * 检查算式中是否有运算符算式
-   *
-   * @param equation 算式
-   * @return 是否有运算符
-   */
+  
   public boolean testHasOperator(String equation) {
     boolean hasOp = false;
     for (int i = 0; i < equation.length(); i++) {
@@ -152,12 +122,7 @@ public class AutoCalc {
     return hasOp;
   }
 
-  /**
-   * 检查算式是否是数字
-   *
-   * @param equation 算式
-   * @return 否是数字
-   */
+  
   public boolean testIsNumber(String equation) {
     return tools.isNumber(equation);
   }
@@ -166,152 +131,96 @@ public class AutoCalc {
     lastSuccess = true;
   }
 
-  /**
-   * 获取上次计算是否成功
-   *
-   * @return 上次计算是否成功
-   */
+  
   public boolean isLastSuccess() {
     return lastSuccess;
   }
 
-  /**
-   * 获取是否使用角度制
-   *
-   * @return 是否使用角度制
-   */
+  
   public boolean isUseDegree() {
     return useDegree;
   }
 
-  /**
-   * 设置是否使用角度制
-   *
-   * @param useDegree 是否使用角度制
-   */
+  
   public void setUseDegree(boolean useDegree) {
     this.useDegree = useDegree;
   }
 
-  /**
-   * 获取是否将求余%变成百分号
-   *
-   * @return 是否将求余%变成百分号
-   */
+  
   public boolean isUseModAsPercent() {
     return useModAsPercent;
   }
 
-  /**
-   * 设置是否将求余%变成百分号
-   *
-   * @param useModAsPercent 是否将求余%变成百分号
-   */
+  
   public void setUseModAsPercent(boolean useModAsPercent) {
     this.useModAsPercent = useModAsPercent;
   }
 
-  /**
-   * 获取计算器进制
-   *
-   * @return 进制
-   */
+  
   public int getBcMode() {
     return bcMode;
   }
 
-  /**
-   * 设置计算器进制
-   *
-   * @param bcMode 进制
-   */
+  
   public void setBcMode(int bcMode) {
     this.bcMode = bcMode;
   }
 
-  /**
-   * 获取计算精度
-   */
+  
   public int getNumberScale() {
     return numberScale;
   }
 
-  /**
-   * 设置计算精度
-   */
+  
   public void setNumberScale(int numberScale) {
     this.numberScale = numberScale;
   }
 
-  /**
-   * 获取上次计算发生的错误
-   */
+  
   public Exception getLastException() {
     return lastException;
   }
 
-  /**
-   * 获取上一次计算步骤记录
-   */
+  
   public List<String> getLastCalcSteps() {
     return lastCalcSteps;
   }
 
-  /**
-   * 获取是否记录运算步骤
-   * @return 是否记录运算步骤
-   */
+  
   public boolean isRecordStep() {
     return recordStep;
   }
 
-  /**
-   * 设置是否记录运算步骤
-   * @param recordStep 是否记录运算步骤
-   */
+  
   public void setRecordStep(boolean recordStep) {
     this.recordStep = recordStep;
   }
 
-  /**
-   * 获取上次计算的算式
-   * @return
-   */
+  
   public String getLastFormula() {
     return lastFormula;
   }
 
-  /**
-   * 获取启用自动科学计数法开始的数值
-   */
+  
   public long getScientificNotationMax() { return scientificNotationMax; }
 
-  /**
-   * 设置启用自动科学计数法开始的数值
-   * @param scientificNotationMax 启用自动科学计数法开始的数值
-   */
+  
   public void setScientificNotationMax(long scientificNotationMax) {
     this.scientificNotationMax = scientificNotationMax;
   }
 
-  /**
-   * 获取是否启用自动科学计数法显示
-   * @return 是否启用自动科学计数法显示
-   */
+  
   public boolean isAutoScientificNotation() {
     return autoScientificNotation;
   }
 
-  /**
-   * 设置是否启用自动科学计数法显示
-   * @param autoScientificNotation 是否启用自动科学计数法显示
-   */
+  
   public void setAutoScientificNotation(boolean autoScientificNotation) {
     this.autoScientificNotation = autoScientificNotation;
   }
 
   //============================
-  // 设置和配置
+  
   //============================
 
   private boolean forceNoNumberCheck = false;
@@ -324,40 +233,26 @@ public class AutoCalc {
   private Exception lastException = null;
   private List<String> lastCalcSteps = new ArrayList<>();
   private String lastFormula = "";
-  private boolean recordStep = false;// 是否记录运算步骤
-  private boolean useDegree = false;// 是否使用角度制
-  private boolean useModAsPercent = true;// 是否将求余%变成百分号
-  private Random random = null;//随机数生成器
+  private boolean recordStep = false;
+  private boolean useDegree = false;
+  private boolean useModAsPercent = true;
+  private Random random = null;
 
   //============================
-  // 运算符解析器模块
+  
   //============================
 
   public static final int OP_TYPE_START = 0;
   public static final int OP_TYPE_END = 1;
   public static final int OP_TYPE_BOTH = 2;
 
-  /**
-   * 函数解析器回调
-   */
+  
   public interface AutoCalcFunctionActuator {
-    /**
-     * 函数计算回调
-     * @param formula 算式
-     * @param formulaBuffer 算式 StringBuilder
-     * @param functionName 函数名称
-     * @param radians 如果该函数执行器注册了弧度自动转换，此参数传入用户输入的第一个函数参数数值（弧度）
-     * @param params 用户输入的函数参数
-     * @return 返回计算结果（字符串）
-     * @throws AutoCalcException 计算错误时抛出错误
-     * @throws AutoCalcInfiniteException 计算结果为无限大时抛出错误
-     */
+    
     String onCalcFunction(String formula, StringBuilder formulaBuffer, String functionName, BigDecimal radians, String[] params) throws Exception;
   }
 
-  /**
-   * 函数解析器基类
-   */
+  
   private class AutoCalcFunctionSolver {
     AutoCalcFunctionActuator actuator;
     String functionName;
@@ -377,42 +272,20 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 运算符解析器基类
-   */
+  
   public class AutoCalcOperatorSolver {
 
     String name;
-    /**
-     * 优先级，越大优先级越高
-     */
+    
     int priority;
-    /**
-     * 运算符类型
-     * OP_TYPE_START = 0 前缀运算符
-     * OP_TYPE_END = 1 后缀运算符
-     * OP_TYPE_BOTH = 2 中缀运算符
-     *
-     * 对于 OP_TYPE_START ，有 sr 和 nr 参数，其他参数为 "NULL"
-     * 对于 OP_TYPE_END ，有 sl 和 nl 参数，其他参数为 "NULL"
-     * 对于 OP_TYPE_BOTH ，有 sl、nl、sr 和 nr 参数
-     */
+    
     int type;
-    /**
-     * 指定当前解析器要匹配的运算符
-     */
+    
     ArrayList<String> checkOpSymbols = new ArrayList<>();
-    /**
-     * 指定当解析器没有匹配到参数时使用的默认运算参数
-     */
+    
     String defaultCalcValue = "NaN";
 
-    /**
-     * 创建运算符解析器
-     * @param name 名称
-     * @param priority 优先级
-     * @param type 运算符类型
-     */
+    
     public AutoCalcOperatorSolver(String name, int priority, int type, String[] checkOpSymbols) {
       this.name = name;
       this.type = type;
@@ -422,35 +295,20 @@ public class AutoCalc {
         operators.add(new OperatorInfo(s, type));
     }
 
-    //可被继承的函数
+    
 
     public void onRemoved() {
       operators.removeAll(checkOpSymbols);
     }
-    /**
-     * 匹配运算符
-     * @param formulaBuffer 算式
-     * @return 返回是否匹配成功
-     */
+    
     public boolean onPatch(StringBuilder formulaBuffer) {
       return onTestOperator(formulaBuffer);
     }
-    /**
-     * 运算时匹配运算符
-     * @param formulaBuffer 算式
-     * @param operatorSymbol 当前运算符
-     * @param index 当前运算符位置索引
-     * @return 返回是否匹配成功
-     */
+    
     public boolean onSolvePreMatch(StringBuilder formulaBuffer, String operatorSymbol, int index) {
       return true;
     }
-    /**
-     * 测试运算符是否在算式中存在
-     * 在默认匹配时调用
-     * @param formulaBuffer 算式
-     * @return 运算符是否在算式中存在
-     */
+    
     public boolean onTestOperator(StringBuilder formulaBuffer) {
       for (String symbol : checkOpSymbols)
         if (formulaBuffer.indexOf(symbol) >= 0)
@@ -458,22 +316,12 @@ public class AutoCalc {
       return false;
     }
 
-    /**
-     * 计算运算符
-     * @param sl 左边参数（字符串）
-     * @param sr 右边参数（字符串）
-     * @param nl 左边参数
-     * @param nr 右边参数
-     * @param operator 当前运算符
-     * @return 返回计算结果（字符串）
-     * @throws AutoCalcException 计算错误时抛出错误
-     * @throws AutoCalcInfiniteException 计算结果为无限大时抛出错误
-     */
+    
     public String onCalcOperator(String sl, String sr, BigDecimal nl, BigDecimal nr, String operator) throws AutoCalcException, AutoCalcInfiniteException {
       return "NaN";
     }
 
-    //内核处理函数
+    
 
     void onCalcSolve(StringBuilder formulaBuffer) throws AutoCalcException, AutoCalcInfiniteException {
 
@@ -482,9 +330,9 @@ public class AutoCalc {
 
       for (int i = 0; i < formulaSize; i++) {
 
-        //寻找运算符
+        
         for (String symbol : checkOpSymbols) {
-          //单个字符op
+          
           int symbolSize = symbol.length();
           if (symbolSize == 1) {
             if (i < formulaSize && formulaBuffer.charAt(i) == symbol.charAt(0)) {
@@ -496,7 +344,7 @@ public class AutoCalc {
                 i = formulaSolvedInxdex - 1;
             }
           } else if (symbolSize > 1) {
-            //多个字符组成的op
+            
             if (i < formulaSize && formulaBuffer.charAt(i) == symbol.charAt(0)) {
               boolean match = true;
               for (int j = 0; j < symbolSize; j++) {
@@ -616,23 +464,15 @@ public class AutoCalc {
       return defaultCalcValue;
     }
 
-    /**
-     * 计算单个运算符
-     *
-     * @param sl       左
-     * @param sr       右
-     * @param operator 运算符
-     * @return 返回已计算结果
-     * @throws AutoCalcException 计算发生错误时抛出此异常
-     */
+    
     private String calcOperatorSingle(String sl, String sr, String operator) throws AutoCalcException, AutoCalcInfiniteException {
-      // 优先级 由上到下
+      
 
-      // 是NaN说明是第一次运算(并且不是单向运算符)，直接返回
+      
       if ("NaN".equals(sl) && this.type != OP_TYPE_START)
         return sr;
 
-      //数字转换
+      
       BigDecimal nl = BigDecimal.ZERO, nr = BigDecimal.ZERO;
       if (!"NaN".equals(sl) && !"NULL".equals(sl)) {
         if (tools.isNumber(sl)) nl = tools.strToNumber(sl);
@@ -645,10 +485,7 @@ public class AutoCalc {
 
       return this.onCalcOperator(sl, sr, nl, nr, operator);
     }
-    /**
-     * 检查算式中是否有比当前优先级更高的运算符
-     * @param formulaBuffer 算式
-     */
+    
     public boolean hasMoreAdvancedOperator(StringBuilder formulaBuffer) {
       int index = operatorSolvers.indexOf(this);
       for (int i = index - 1; i >= 0; i--) {
@@ -660,19 +497,9 @@ public class AutoCalc {
   }
 
 
-  /*
-   * 运算符解析器模块
-   *
-   * 运算解析器负责解析算式中的运算符以及其他运算方式
-   * 并按次序进行解析运算
-   *
-   */
+  
 
-  /**
-   * 注册运算符解析器
-   *
-   * @param solver 解析器
-   */
+  
   public void addCalcOperatorSolver(AutoCalcOperatorSolver solver) {
     if (!isCalcOperatorSolverExists(solver.name)) {
       operatorSolvers.add(solver);
@@ -682,23 +509,14 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 查看运算符解析器是否注册
-   *
-   * @param solverName 解析器名称
-   * @return 是否注册
-   */
+  
   public boolean isCalcOperatorSolverExists(String solverName) {
     for (AutoCalcOperatorSolver solver : operatorSolvers)
       if (solver.name.equals(solverName)) return true;
     return false;
   }
 
-  /**
-   * 取消注册运算符解析器
-   *
-   * @param solverName 解析器名称
-   */
+  
   public void removeCalcOperatorSolver(String solverName) {
     for (int i = operatorSolvers.size() - 1; i >= 0; i--) {
       if (operatorSolvers.get(i).name.equals(solverName))
@@ -707,15 +525,7 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 注册函数解析器
-   *
-   * @param functionName     函数名称
-   * @param functionActuator 解析器回调
-   * @param paramCount       函数需要的参数
-   * @param castDegree       是否自动转换参数为角度制
-   * @param containsBinaryConversion 是否
-   */
+  
   public void addCalcFunctionActuatorSolver(String functionName, int paramCount, boolean castDegree,
                                             boolean containsBinaryConversion,
                                             AutoCalcFunctionActuator functionActuator, String numberCheckRangeType) {
@@ -725,23 +535,14 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 函数解析器是否注册
-   *
-   * @param functionName 函数名称
-   * @return 是否注册
-   */
+  
   public boolean isCalcFunctionActuatorExists(String functionName) {
     for (AutoCalcFunctionSolver solver : functionSolvers)
       if (solver.functionName.equals(functionName)) return true;
     return false;
   }
 
-  /**
-   * 取消注册函数解析器
-   *
-   * @param functionName 函数名称
-   */
+  
   public void removeCalcFunctionActuator(String functionName) {
     for (int i = functionSolvers.size() - 1; i >= 0; i--) {
       if (functionSolvers.get(i).functionName.equals(functionName))
@@ -749,57 +550,31 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 注册替换常量
-   *
-   * @param symbol 解析器
-   * @param value  常量值
-   */
+  
   public void addCalcConstants(String symbol, Double value) {
     if (!isCalcOperatorSolverExists(symbol))
       constants.put(symbol, value);
   }
 
-  /**
-   * 查看替换常量是否注册
-   *
-   * @param symbol 常量名称
-   * @return 是否注册
-   */
+  
   public boolean isCalcConstantsExists(String symbol) {
     return constants.containsKey(symbol);
   }
 
-  /**
-   * 取消注册替换常量
-   *
-   * @param symbol 常量名称
-   */
+  
   public void removeCalcConstants(String symbol) {
     constants.remove(symbol);
   }
 
   //============================
-  //所有部件池
+  
   //============================
 
-  /**
-   * 运算符解析器数组
-   * <p>
-   * 按优先级从大到小排序
-   */
+  
   private ArrayList<AutoCalcOperatorSolver> operatorSolvers = new ArrayList<>();
-  /**
-   * 运算符解析器数组
-   * <p>
-   * 按优先级从大到小排序
-   */
+  
   private ArrayList<AutoCalcFunctionSolver> functionSolvers = new ArrayList<>();
-  /**
-   * 运算符解析器数组
-   * <p>
-   * 按优先级从大到小排序
-   */
+  
   private Map<String, Double> constants = new HashMap<>();
 
   private class OperatorInfo {
@@ -811,14 +586,10 @@ public class AutoCalc {
       this.type = type;
     }
   }
-  /**
-   * 所有运算符
-   */
+  
   private List<OperatorInfo> operators = new ArrayList<>();
 
-  /**
-   * 计算主函数
-   */
+  
   private void calcCore(StringBuilder formulaBuffer, boolean isFirst) throws Exception {
     if (formulaBuffer.length() == 0) return;
     if (formulaBuffer.indexOf("∞") > -1) {
@@ -826,13 +597,13 @@ public class AutoCalc {
       formulaBuffer.append("∞");
       return;
     }
-    if (formulaBuffer.indexOf("(") > -1) calcParenthesis(formulaBuffer);// 先计算括号
-    if (formulaBuffer.indexOf(",") > -1) // 识别为函数参数
+    if (formulaBuffer.indexOf("(") > -1) calcParenthesis(formulaBuffer);
+    if (formulaBuffer.indexOf(",") > -1) 
     {
       String[] ss = formulaBuffer.toString().split(",");
       StringBuilder sb = new StringBuilder();
 
-      for (int i = 0; i < ss.length; i++)// 参数逐一分解
+      for (int i = 0; i < ss.length; i++)
       {
         StringBuilder arg = new StringBuilder(ss[i]);
 
@@ -846,9 +617,9 @@ public class AutoCalc {
       formulaBuffer.append(sb);
 
     } else {
-      calcConstants(formulaBuffer); // 再替换常量
+      calcConstants(formulaBuffer); 
 
-      //匹配运算符，优先级从高到低
+      
       boolean formulaPatched = false;
       AutoCalcOperatorSolver solver;
       for (AutoCalcOperatorSolver operatorSolver : operatorSolvers) {
@@ -859,7 +630,7 @@ public class AutoCalc {
         }
       }
 
-      //无法处理，抛出异常
+      
       if (!forceNoNumberCheck && !formulaPatched && !tools.isNumber(formulaBuffer) && formulaBuffer.length() != 0)
         throw new AutoCalcException("错误的输入：" + formulaBuffer.toString());//
 
@@ -871,12 +642,9 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 把字符串中含有的常量转换成数字
-   * @param formulaBuffer 算式
-   */
+  
   private void calcConstants(StringBuilder formulaBuffer) throws AutoCalcException, AutoCalcInfiniteException {
-    //常量池
+    
     Set<String> constantsKeySet = constants.keySet();
     for (String symbol : constantsKeySet) {
       String symbolText = tools.numberToStr(constants.get(symbol));
@@ -914,15 +682,7 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 处理函数
-   *
-   * @param formulaBuffer 算式
-   * @param functionName  函数名称
-   * @return 返回已计算的结果
-   * @throws AutoCalcException         计算发生错误时抛出此异常
-   * @throws AutoCalcInfiniteException 当计算为无限大时抛出此异常
-   */
+  
   private void calcFunction(StringBuilder formulaBuffer, String functionName) throws Exception {
 
     String formula = formulaBuffer.toString();
@@ -932,18 +692,18 @@ public class AutoCalc {
 
         String[] params = null;
 
-        //检查参数
+        
         if (solver.paramCount >= 1) {
           if (formula.contains(",")) params = formula.split(",");
           if (solver.paramCount > 1 && (params == null || params.length != solver.paramCount))
             throw new AutoCalcException("函数：" + functionName + " 需要 " + solver.paramCount + " 个参数");
         }
 
-        //处理某些弧度函数
+        
         BigDecimal radians = BigDecimal.ZERO;
         if (solver.castDegree) {
           try {
-            // 根据设置转换文字（角度/弧度）为弧度
+            
             radians = useDegree ? math.d2g(BigDecimal.valueOf(Double.valueOf(formula))) : BigDecimal.valueOf(Double.valueOf(formula));
           } catch (Exception e) {
             throw new AutoCalcException("未知符号：" + formula);
@@ -979,20 +739,14 @@ public class AutoCalc {
     } else throw new AutoCalcException("未知函数：" + functionName);
   }
 
-  /**
-   * 递归处理算式中的括号
-   *
-   * @param formulaBuffer 算式
-   * @throws AutoCalcException         计算发生错误时抛出此异常
-   * @throws AutoCalcInfiniteException 当计算为无限大时抛出此异常
-   */
+  
   private void calcParenthesis(StringBuilder formulaBuffer) throws Exception {
     //
-    // 先从外到里
+    
     boolean qfinded = false;
     int i, qc = 0, qstart = 0;
     for (i = 0; i < formulaBuffer.length(); i++) {
-      // 括号计数
+      
       //
       if (formulaBuffer.charAt(i) == '(') {
         qc++;
@@ -1003,11 +757,11 @@ public class AutoCalc {
       } else if (formulaBuffer.charAt(i) == ')')
         qc--;
       if (qc == 0 && qfinded) {
-        // 括号结尾
+        
         qfinded = false;
 
         String formulaInn = formulaBuffer.substring(qstart + 1, i);
-        // 找括号前面是否有函数名
+        
         String frontName = "";
         if (qstart > 0) {
           boolean frontNameSearched = false;
@@ -1024,20 +778,20 @@ public class AutoCalc {
         }
 
 
-        // 递归将括号中的算式算掉
+        
         StringBuilder resultPartBuilder = new StringBuilder(formulaInn);
         calcCore(resultPartBuilder, false);
 
-        // 如果有函数名则计算函数
+        
         if (!"".equals(frontName)) {
           calcFunction(resultPartBuilder, frontName);
 
-          // 结果替换到原算式中
+          
           String resultWithParenthesis = frontName + "(";
           int ixx = formulaBuffer.indexOf(resultWithParenthesis);
           formulaBuffer.delete(ixx, ixx + resultWithParenthesis.length());
         } else {
-          // 删除第一个(
+          
           int ixx = formulaBuffer.indexOf("(");
           formulaBuffer.delete(ixx, ixx + 1);
         }
@@ -1047,17 +801,14 @@ public class AutoCalc {
         if (index > -1) {
           formulaBuffer.delete(index, index + formulaWithParenthesis.length());
           formulaBuffer.insert(index, resultPartBuilder);
-          //已发生替换动作，现在需要重新搜索，因为字符串长度已经变化
+          
           i = 0;
         }
       }
     }
   }
 
-  /**
-   * 去除多余的 0
-   * @param stringBuilder
-   */
+  
   private void removeContinuousZero(StringBuilder stringBuilder) {
     int pointPos = stringBuilder.indexOf("."), lastNoZeroPos = 0;
     if(pointPos > 0) {
@@ -1073,10 +824,7 @@ public class AutoCalc {
     }
   }
 
-  /**
-   * 自动转换进制
-   * @param stringBuilder 数字
-   */
+  
   private void autoBinaryConversion(StringBuilder stringBuilder) throws AutoCalcException {
     String radix = tools.getNumberStrRadix(stringBuilder.toString());
     String fixNumber = null;
@@ -1096,11 +844,11 @@ public class AutoCalc {
 
   //==============================
 
-  //初始化
+  
 
   private void initAllOperatorSolver() {
 
-    //这里定义所有运算符运算
+    
 
     addCalcOperatorSolver(new AddSubOperatorSolver());
     addCalcOperatorSolver(new MulDivOperatorSolver());
@@ -1115,7 +863,7 @@ public class AutoCalc {
 
   private void initAllFunctionSolver() {
 
-    //这里定义所有函数运算
+    
 
     addCalcFunctionActuatorSolver("sin", 1, true, false,
             (formula, formulaBuffer, functionName, radians, params) -> tools.numberToStr(Math.sin(radians.doubleValue())),
@@ -1276,7 +1024,7 @@ public class AutoCalc {
 
   private void initAllConstants() {
 
-    //这里定义所有常量
+    
 
     addCalcConstants("e", Math.E);
     addCalcConstants("е", Math.E);
@@ -1285,7 +1033,7 @@ public class AutoCalc {
   }
 
 
-  //判断函数
+  
 
   public boolean containsOperator(String s) {
     for (OperatorInfo operator : operators)
@@ -1325,7 +1073,7 @@ public class AutoCalc {
 
   //==============================
 
-  //所有运算符解析器
+  
 
   private class AddSubOperatorSolver extends AutoCalcOperatorSolver {
 

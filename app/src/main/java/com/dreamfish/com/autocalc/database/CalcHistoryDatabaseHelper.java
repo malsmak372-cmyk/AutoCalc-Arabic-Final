@@ -9,10 +9,7 @@ public class CalcHistoryDatabaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "calcHistory.db";
 
-    /**
-     * 在构造方法中，尽量少的向外提供参数接口，防止其他类修改数据库名称、
-     * 版本号。
-     */
+    
     public CalcHistoryDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }

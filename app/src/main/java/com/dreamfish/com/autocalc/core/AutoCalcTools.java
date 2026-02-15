@@ -17,21 +17,11 @@ public class AutoCalcTools {
   public String numberToScientificNotationStr(BigDecimal n) throws AutoCalcException, AutoCalcInfiniteException {
     return n.stripTrailingZeros().toString().replace("+", "").replace("E", "×10^");
   }
-  /**
-   * 数字转字符串
-   *
-   * @param n BigDecimal数字
-   * @return 返回转为的字符串
-   */
+  
   public String numberToStr(double n) throws AutoCalcException, AutoCalcInfiniteException {
     return numberToStr(doubleToBigDecimal(n));
   }
-  /**
-   * 数字转字符串
-   *
-   * @param n BigDecimal数字
-   * @return 返回转为的字符串
-   */
+  
   public String numberToStr(BigDecimal n) {
     BigDecimal n2 = n.stripTrailingZeros().setScale(autoCalc.getNumberScale(), BigDecimal.ROUND_HALF_UP);
     switch (autoCalc.getBcMode()) {
@@ -46,12 +36,7 @@ public class AutoCalcTools {
     }
     return "";
   }
-  /**
-   * 数字转字符串
-   *
-   * @param n BigDecimal数字
-   * @return 返回转为的字符串
-   */
+  
   public String numberToStr(long n) {
     switch (autoCalc.getBcMode()) {
       case BC_MODE_DEC:
@@ -65,12 +50,7 @@ public class AutoCalcTools {
     }
     return "";
   }
-  /**
-   * 数字字符串转为数字
-   *
-   * @param str 字符串
-   * @return 返回转为的数字
-   */
+  
   public BigDecimal strToNumber(String str) throws AutoCalcException {
 
     try {
@@ -93,11 +73,7 @@ public class AutoCalcTools {
       throw new AutoCalcException("意外的：" + str);
     }
   }
-  /**
-   * 检查字符串是否是数字
-   *
-   * @param str 需要检查的字符
-   */
+  
   public boolean isNumber(String str) {
     if ("".equals(str)) return false;
     if (str.startsWith(" ") || str.endsWith(" ")) str = str.trim();
@@ -127,19 +103,11 @@ public class AutoCalcTools {
     }
     return Pattern.matches("-?[0-9]*(\\.?)[0-9]*", str);
   }
-  /**
-   * 字符串转数字
-   * @param stringBuilder 字符串
-   * @return 数字BigDecimal
-   */
+  
   public BigDecimal strToNumber(StringBuilder stringBuilder) throws AutoCalcException {
     return strToNumber(stringBuilder.toString());
   }
-  /**
-   * 检查是否是数字
-   * @param stringBuilder 字符串
-   * @return 是否是数字
-   */
+  
   public boolean isNumber(StringBuilder stringBuilder) {
     return isNumber(stringBuilder.toString());
   }
@@ -150,11 +118,7 @@ public class AutoCalcTools {
     return BigDecimal.valueOf(d);
   }
 
-  /**
-   * 获取数字的进制（h,o,b）
-   * @param str 数字字符串
-   * @return 进制（h,o,b）
-   */
+  
   public String getNumberStrRadix(String str) {
     if (str.startsWith(" ") || str.endsWith(" ")) str = str.trim();
     if ((str.endsWith("b") || str.startsWith("0b") && !str.startsWith("0x"))) return "b";
@@ -163,12 +127,7 @@ public class AutoCalcTools {
     return "d";
   }
 
-  /**
-   * 检查数值是否溢出
-   * @param n 数值
-   * @param type 类型（int,long.double）
-   * @return 数值是否溢出
-   */
+  
   public boolean checkNumberRange(BigDecimal n, String type) {
     switch (type) {
       case "int":
@@ -180,11 +139,7 @@ public class AutoCalcTools {
     }
     return true;
   }
-  /**
-   * 检查数值是否溢出并抛出异常
-   * @param n 数值
-   * @param type 类型（int,long.double）
-   */
+  
   public void checkNumberRangeAndThrow(BigDecimal n, String type) throws AutoCalcInfiniteException {
     if(!checkNumberRange(n, type))
       throw new AutoCalcInfiniteException();
